@@ -1,0 +1,11 @@
+Page,Visual Name,Graph Type,Description,DAX Formula
+1,Fraud Detection Rate KPI,KPI Card,Show overall percentage of fraudulent claims in the dataset.,"Fraud Detection Rate = DIVIDE(CALCULATE(COUNTROWS(Claims), Claims[Fraudulent] = ""Yes""), COUNTROWS(Claims), 0)"
+1,Fraudulent vs Non-Fraudulent Claims,Stacked Bar Chart,Compare the count of fraudulent and non-fraudulent claims.,Total Claims by Fraud Status = COUNTROWS(Claims)
+1,Total Premium Collected,KPI Card,Display total premium amount received by the company.,Total Premium = SUM(Claims[PremiumAmount])
+1,Average Premium by Fraudulent Status,Clustered Column Chart,Show how average premium differs between fraudulent and non-fraudulent claims.,Average Premium = AVERAGE(Claims[PremiumAmount])
+1,Trend of Fraudulent Claims Over Time,Line Chart,Track monthly count of fraudulent claims over time.,"Fraudulent Claims Trend = CALCULATE(COUNTROWS(Claims), Claims[Fraudulent] = ""Yes""), DATESINPERIOD(Claims[ClaimDate], MAX(Claims[ClaimDate]), -12, MONTH)"
+2,Age Distribution of Fraudulent Claims,Histogram,Understand age patterns related to fraudulent claims.,"Fraudulent Age Dist = CALCULATE(COUNTROWS(Claims), Claims[Fraudulent] = ""Yes"")"
+2,Geographic Fraud Map,Map,Visualize where fraudulent claims are concentrated geographically.,"Fraud Count by City = CALCULATE(COUNTROWS(Claims), Claims[Fraudulent] = ""Yes""); Use Customer[City] in map."
+2,Fraud by Policy Type,Pie Chart,Show share of each policy type in total fraudulent claims.,"Fraud Count by Policy = CALCULATE(COUNTROWS(Claims), Claims[Fraudulent] = ""Yes""), RELATED(Policies[PolicyType])"
+2,Fraud by Payment Method,Bar Chart,Identify payment channels with higher fraud occurrence.,"Fraud Count by Payment = CALCULATE(COUNTROWS(Claims), Claims[Fraudulent] = ""Yes"")"
+2,Fraud Rate by Gender,Stacked Column Chart,Compare fraud rates between genders.,"Fraud % by Gender = DIVIDE(CALCULATE(COUNTROWS(Claims), Claims[Fraudulent] = ""Yes""), CALCULATE(COUNTROWS(Claims)), 0)"
